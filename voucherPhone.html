@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Phone</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/all.min.css">
+
+	<link rel="stylesheet" type="text/css" href="voucherPhone.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<!-- <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" -->
+</head>
+<body class="bg-success container-fluid">
+<div class="row">
+	<div class="col-3">
+	<input type="number" id="ncard" placeholder="No of voucher" name="">
+	<select id="net">
+			<option value="MTN">MTN</option>
+			<option value="AIRTEL">AIRTEL</option>
+			<option value="GLO">GLO</option>
+			<option value="ETISALAT">ETISALAT</option>
+	</select><br>
+	<select id="amount"><option value="100">#100</option>
+			<option value="200">#200</option>
+			<option value="500">#500</option>
+			<option value="1000">#1000</option>
+	</select>
+	<button onclick="generate()">Generate</button>
+	<div id="result" class="card shadow-lg">Voucher list<br><hr></div>
+	</div>
+
+	<div class="col-9"><br><hr>
+	<div id="pscreen" class="bg-dark">
+		<div id="ba3">
+			<div class="row">
+			
+						<div class="col-1"><span class="fa fa-facebook"></span></div>
+						<div class="col-1"><span class="fa fa-whatsapp"></span></div>
+						<!-- <div class="col-1"><span class="fa fa-comment"></span></div> -->
+						<div class="col-1"><span class="fa fa-wifi"></span></div>
+						<div class="col-1"><span class="fa fa-signal"></span></div>
+						<div class="col-1"><span class="fa fa-signal"></span></div>
+						<div class="col-1"><span  class="fa fa-battery-three-quarters"></span></div>
+						<div id="ba" class="col-1" onload="clock()"><span></span></div>
+			</div>
+
+
+
+
+		 </div>
+		<div>
+			
+		</div>
+		<div id="scr">
+				<div class="row">
+					<div class="col-3"><button id="call" class="btn btn-success"><span class="fa fa-phone"></span></button>call</div>
+					<div class="col-3"><button class="btn btn-danger"><span class="fa fa-whatsapp"></span></button>what</div>
+					<div class="col-3"><button class="btn btn-primary"><span class="fa fa-comment"></span></button>mess</div>
+					<div class="col-3"><button class="btn btn-success"><span class="fa fa-instagram"></span></button>inst</div>
+			
+			
+		
+				</div>
+			
+
+		</div>
+
+			<div id="ps" class="card" style=" display:none; height: 450px " >
+				<input type="text" placeholder="HEllO!!!" id="cS"  style=" height:140px;" name="">
+				<div id="bt" style="height: 200px ">
+					<table class="table table-bordered table-hover table-striped"></table>
+							<tbody>
+							<tr>
+									<div style=" margin-left: 215px; width: 30px; margin-top: -12px;  ">
+									<button class="col-12 btn btn-sm btn-outline-success" onclick="del()"><span class="fa fa-close"></span></button>
+								</div>	
+								<div class="row">
+								<td class="col-4"><button class="btn btn-cyan btn-block" onclick="num('1')">1</button></td>
+								<td class="col-4"><button class="btn btn-cyan btn-block"onclick="num('2')">2</button></td>
+								<td class="col-4"><button class="btn btn-cyan btn-block"onclick="num('3')">3</button></td>
+								</div>
+							</tr>
+<tr>
+								<div class="row">
+								<td class="col-4"><button class="btn btn-cyan btn-block"onclick="num('4')">4</button></td>
+								<td class="col-4"><button class="btn btn-cyan btn-block" onclick="num('5')">5</button></td>
+								<td class="col-4"><button class="btn btn-cyan btn-block" onclick="num('6')">6</button></td>
+								</div>
+							</tr>
+							
+<tr>
+								<div class="row">
+								<td class="col-4"><button class="btn btn-cyan btn-block" onclick="num('7')">7</button></td>
+								<td class="col-4"><button class="btn btn-cyan btn-block" onclick="num('8')">8</button></td>
+								<td class="col-4"><button class="btn btn-cyan btn-block" onclick="num('9')">9</button></td>
+								</div>
+							</tr>						
+<tr>
+								<div class="row">
+								<td class="col-4"><button class="btn btn-cyan btn-block"onclick="num('*')">*</button></td>
+								<td class="col-4"><button class="btn btn-cyan btn-block"onclick="num('0')">0</button></td>
+								<td class="col-4"><button class="btn btn-cyan btn-block"onclick="num('#')">#</button></td>
+								</div>
+								<div style=" margin-left: 100px;  ">
+									<button class="col-4 btn btn-lg btn-success" onclick="dial()"><span class="fa fa-phone"></span></button>
+								</div>	
+
+							</tr>
+						</tbody>
+				</div>
+
+
+			</div>		
+
+		</div>
+
+
+</div>
+	<script type="text/javascript" src="jquery.js" ></script>
+	<script type="text/javascript" src="bootstrap.js" ></script>
+	<script type="text/javascript" src="voucherPhone.js"></script>
+</body>
+</html>

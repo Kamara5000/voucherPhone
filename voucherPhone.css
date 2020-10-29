@@ -1,0 +1,44 @@
+#pscreen{
+
+	width: 250px;
+	height: 500px;
+	margin-left: 500px;
+	border-radius: 15px;
+
+	/*background-image: url(SOLAR.JPG);*/
+
+}
+
+#ba3{
+
+	background-color: white;
+	width: 250px;
+	height: 15px;
+	border-radius: 15px;
+	margin-top: 20px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+	opacity: 0.6;
+
+}
+
+#ba{
+	width:10px;
+	font-size: 80%;
+	font-family: sans-serif;
+
+}
+
+#scr{
+
+	width: 250px;
+	height: 450px;
+	background-color: white;
+	opacity: 0.7;
+}
+
+#result{
+	width: 250px;
+
+
+}

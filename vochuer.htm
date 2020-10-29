@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>voucher</title>
+</head>
+<body>
+
+<div style=" margin-left: 500px " > <input type="text" onblur="submitQ(this.value)" id="quantity" placeholder="quantity..." />
+
+ <select id="network" onblur="submitN(this.value)">
+ 	  <option>mtn</option>
+ 	  <option>glo</option>
+ 	  <option>airtel</option>
+ </select>
+
+  <select id="amount" onblur="submitA(this.value)">
+ 	  <option>100</option>
+ 	  <option>200</option>
+ 	  <option>500</option>
+ 	  <option>750</option>
+ 	  <option>1000</option>
+ </select><br>
+
+
+ <button onclick="gen()" style="padding:2.5px;background-color:green;color:white;">generate</button><br><br>
+
+<div id="card_loaded" style="width:350px;height:250px;border:1.5px solid black;"></div><br><br><br>
+
+<!-- <div id="recharge" style="width:300px;height:300px;border:1.5px solid black;"></div><br> -->
+
+<textarea cols="20" rows="10" wrap="virtual" id="recharge"  onblur="submitL(this.value)"  placeholder="recharge..."></textarea><br>
+
+<button onclick="rec()" style="padding:2.5px;background-color:green;color:white;">recharge</button><br>
+
+<p>
+    check balance:<br>
+     mtn ---> *556#<br>
+     glo ---> *124#<br>
+     airtel ---> *232#     
+</p>
+</div>
+<script type="text/javascript">
+	// var quan=parseInt(document.getElementById("quantity").value);
+    var quan;
+    var net;
+    var amt;
+    var load=document.getElementById("card_loaded");
+    var rech;
+
+    function submitQ(val){
+        quan =parseInt(val);
+    }
+    function submitN(val){
+        net =val;
+    }
+    function submitA(val){
+       amt =val;
+    }
+    function submitL(val){
+       rech =val;
+    }
+
+    function gen(){
+        
+        if(localStorage.getItem('Mtnbalance') == null){
+        	 localStorage.setItem('Mtnbalance',0);
+        }
+        if(localStorage.getItem('Globalance') == null){
+             localStorage.setItem('Globalance',0);
+        }
+        if(localStorage.getItem('Airtelbalance') == null){
+             localStorage.setItem('Airtelbalance',0);
+        }
+
+        for(var i=0;i<quan;i++){
+
+             var x = Object.keys(localStorage);
+
+             var store = "store"+ x.length;
+
+             var random = Math.floor(Math.random() * 900000000000000000000);
+
+             var randomToString=random.toString();
+
+             var card = randomToString.substr(0,4) +"-"+ randomToString.substr(4,4) +"-"+ randomToString.substr(8,4) +"-"+ randomToString.substr(12,5);
+
+             var split = card.split("-");
+
+             var credit = split.join('');
+
+            if(net =="mtn"){
+               var code = "*555*"+credit+"#";
+            }
+            else if(net =="glo"){
+               var code = "*123*"+credit+"#";
+            }
+            else if(net =="airtel"){
+               var code = "*232*"+credit+"#";
+            }
+
+             var obj = {amount:amt,network:net,loading:card,code:code};
+
+             var str = JSON.stringify(obj);
+             
+               localStorage.setItem(store,str);
+
+             load.innerHTML +=card +"<br>";
+
+             console.log(card);
+
+        }
+
+    }
+
+
+
+    function rec(){
+
+        if(rech =="*556#" ){
+           
+            var bal=localStorage.getItem('Mtnbalance');
+
+            document.getElementById("recharge").value="your mtn balance is #"+bal;
+
+            // console.log(bal);
+
+        }
+        else if(rech =="*232#" ){
+
+             var bal=localStorage.getItem('Airtelbalance');
+
+            document.getElementById("recharge").value="your airtel balance is #"+bal;
+
+        }
+         else if(rech =="*124#" ){
+
+             var bal=localStorage.getItem('Globalance');
+
+            document.getElementById("recharge").value="your glo balance is #"+bal;
+
+        }
+        else{
+
+            var fetch=Object.keys(localStorage);
+
+            for(var n=1;n<fetch.length;n++){
+
+                 var parse = JSON.parse(localStorage.getItem(fetch[n]));
+
+                 var charge = parse.code;
+
+                 if(rech == charge){
+
+                      if(parse.network == "mtn"){
+                         var add = parseInt(localStorage.getItem('Mtnbalance')) + parseInt(parse.amount);
+                         localStorage.setItem('Mtnbalance',add);
+                         document.getElementById("recharge").value="you recharge a mtn card of #"+parse.amount;
+                      }
+                      else if(parse.network == "glo"){
+                         var add = parseInt(localStorage.getItem('Globalance')) + parseInt(parse.amount);
+                         localStorage.setItem('Globalance',add);
+                         document.getElementById("recharge").value="you recharge a glo card of #"+parse.amount;
+                      }
+                      else if(parse.network == "airtel"){
+                         var add = parseInt(localStorage.getItem('Airtelbalance')) + parseInt(parse.amount);
+                         localStorage.setItem('Airtelbalance',add);
+                         document.getElementById("recharge").value="you recharge an airtel card of #"+parse.amount;
+                      }
+
+                 }
+
+
+            }
+
+
+        } 
+
+
+       
+    }  
+
+
+</script>
+
+
+</body>
+</html>
